@@ -1,0 +1,17 @@
+# Financial Performance Dashboard | Tableau
+
+## Mô tả
+Dashboard phân tích doanh thu theo khu vực, sản phẩm, kênh bán hàng và thời gian.
+
+## Công cụ sử dụng
+Tableau, Excel
+
+## Nội dung thực hiện
+- Xử lý và kiểm tra dữ liệu doanh thu (data validation) trước khi trực quan hóa
+- Xây dựng KPI Dashboard với Filter và Dashboard Actions
+- Phân tích số liệu và đưa ra nhận định về hiệu suất kinh doanh
+
+## Xem dashboard trực tiếp (tương tác)
+🔗 [Xem trên Tableau Public](https://public.tableau.com/views/PHNTCHLINHUNVDBO/Story2?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+
+## Ảnh
