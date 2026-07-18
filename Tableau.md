@@ -23,5 +23,5 @@ Tableau, Excel
 <img width="1917" height="1078" alt="Screenshot 2026-07-18 223256" src="https://github.com/user-attachments/assets/d284988e-ed8a-4e22-8b8a-2b42e3a8c57f" />
 <img width="1917" height="1078" alt="Screenshot 2026-07-18 223350" src="https://github.com/user-attachments/assets/077608e6-8966-4758-9caf-d9cadba0baad" />
 <img width="1917" height="1078" alt="Screenshot 2026-07-18 223334" src="https://github.com/user-attachments/assets/d2308e30-9a97-4925-aace-58b4b682c299" />
-<img width="1917" height="1078" alt="Screenshot 2026-07-18 223334" src="https://github.com/user-attachments/assets/fb8dc23a-cb2b-4939-bd47-1e421dd189ab" />
 <img width="1917" height="1078" alt="Screenshot 2026-07-18 223414" src="https://github.com/user-attachments/assets/46a8160c-46a4-40f8-95e3-d9fb86a46009" />
+<img width="1917" height="1078" alt="Screenshot 2026-07-18 223424" src="https://github.com/user-attachments/assets/fe551303-9ec1-4934-b919-c7520d7b44b7" />
