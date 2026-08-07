@@ -1,0 +1,151 @@
+# 🎮 App Store Strategy Games — Phân tích Thị trường Game Chiến thuật
+
+Phân tích hơn 17.000 game trên Apple App Store (thể loại Games/Strategy) nhằm khám phá xu hướng phát hành, mô hình doanh thu, vòng đời sản phẩm, nhà phát triển và mức độ hài lòng người dùng — từ dữ liệu thô đến dashboard Power BI trực quan.
+
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=flat&logo=powerbi&logoColor=black)
+![Data Source](https://img.shields.io/badge/Data-Kaggle-20BEFF?style=flat&logo=kaggle&logoColor=white)
+![Status](https://img.shields.io/badge/status-completed-brightgreen)
+
+![Tổng quan thị trường Game](images/01-tong-quan.png)
+
+---
+
+## 📑 Mục lục
+
+- [1. Mục đích báo cáo](#1-mục-đích-báo-cáo)
+- [2. Mô tả dữ liệu](#2-mô-tả-dữ-liệu)
+- [3. Thiết kế Dashboard](#3-thiết-kế-dashboard)
+- [4. Kết quả & Insights](#4-kết-quả--insights)
+- [5. Khuyến nghị](#5-khuyến-nghị)
+- [6. Công cụ sử dụng](#6-công-cụ-sử-dụng)
+
+---
+
+## 1. Mục đích báo cáo
+
+Thị trường game di động trên Apple App Store rất cạnh tranh, với hàng chục nghìn tựa game thuộc nhiều thể loại, mô hình kiếm tiền và mức giá khác nhau. Báo cáo này phân tích bộ dữ liệu **17K Apple App Store Strategy Games** nhằm trả lời các câu hỏi:
+
+- Thị trường game chiến thuật đang phát triển theo xu hướng nào qua các năm?
+- Mô hình doanh thu nào (Free, Freemium, Paid, Paid + IAP) đang chiếm ưu thế và mang lại rating/lượt review tốt nhất?
+- Vòng đời trung bình của một game là bao lâu, tỷ lệ game còn được duy trì cập nhật là bao nhiêu?
+- Những nhà phát triển và tựa game nào đang dẫn đầu thị trường?
+- Yếu tố nào (thể loại, độ tuổi, mô hình giá) ảnh hưởng đến mức độ hài lòng (rating) của người dùng?
+
+Từ đó đưa ra khuyến nghị cho nhà phát triển game về chiến lược thể loại, định giá và duy trì sản phẩm.
+
+## 2. Mô tả dữ liệu
+
+### a. Nguồn dữ liệu
+Bộ dữ liệu công khai trên Kaggle: [**17K Mobile Strategy Games**](https://www.kaggle.com/datasets/tristan581/17k-apple-app-store-strategy-games) — tổng hợp thông tin của khoảng 17.000 game trên Apple App Store.
+
+### b. Tổng quan dữ liệu
+
+| Cột | Mô tả |
+|---|---|
+| **Name / Subtitle** | Tên và mô tả ngắn của game |
+| **Genres / Primary Genre** | Thể loại chính và phụ (Games, Strategy, Entertainment, Puzzle, Simulation, Action, Casual...) |
+| **Original Release Date** | Ngày phát hành đầu tiên |
+| **Current Version Release Date** | Ngày cập nhật gần nhất |
+| **Age Rating** | Độ tuổi phù hợp: 4+, 9+, 12+, 17+ |
+| **Price** | Mức giá (0 = miễn phí) |
+| **In-app Purchases** | Có/không có mua trong ứng dụng (IAP) |
+| **Average User Rating** | Điểm đánh giá trung bình |
+| **User Rating Count** | Tổng số lượt đánh giá/review |
+| **Developer** | Nhà phát triển game |
+| **Size / Languages** | Dung lượng và số ngôn ngữ hỗ trợ |
+
+### c. Chuẩn bị dữ liệu
+
+- Chuẩn hóa định dạng ngày (Release Date, Update Date) để tính toán **tuổi đời game** và **số ngày kể từ lần cập nhật gần nhất**.
+- Phân loại **mô hình doanh thu** thành 4 nhóm dựa trên `Price` và `In-app Purchases`: *Miễn phí hoàn toàn*, *Freemium (Free + IAP)*, *Paid + IAP*, *Paid (trả phí một lần)*.
+- Tạo cột phân loại **tình trạng duy trì** (Còn duy trì / Ngừng cập nhật) dựa trên khoảng cách giữa lần cập nhật gần nhất và thời điểm phân tích.
+- Xử lý dữ liệu thiếu, chuẩn hóa tên Developer và Genre bị trùng lặp.
+
+## 3. Thiết kế Dashboard
+
+Dashboard Power BI gồm **5 trang**, có bộ lọc chung: **Năm phát hành**, **Độ tuổi**, **Mức giá**.
+
+| Trang | Nội dung chính |
+|---|---|
+| 🟦 Tổng quan | Bức tranh toàn cảnh thị trường: số lượng game, tỷ lệ miễn phí, rating, phân bố thể loại/độ tuổi/năm |
+| 💰 Mô hình Doanh thu & Chiến lược Giá | Cơ cấu mô hình kiếm tiền, quy mô người chơi Free/Paid, giá trung bình theo thể loại |
+| 📈 Xu hướng & Vòng đời game | Tốc độ ra mắt game theo năm, tuổi đời trung bình, tỷ lệ còn duy trì cập nhật |
+| 👨‍💻 Nhà phát triển | Xếp hạng developer theo số lượng game và điểm đánh giá |
+| ⭐ Chất lượng & Mức độ hài lòng | Rating theo thể loại/độ tuổi, xu hướng rating theo năm, top game được yêu thích |
+
+## 4. Kết quả & Insights
+
+### 🟦 Tổng quan
+
+![Tổng quan thị trường Game](images/01-tong-quan.png)
+
+- Thị trường ghi nhận **~17.000 game**, trong đó **83,74% là miễn phí**, tổng cộng **24,76 triệu lượt review** và điểm đánh giá trung bình **4,06/5** — cho thấy chất lượng tổng thể ở mức khá tốt.
+- **Games** và **Strategy** là hai thể loại chính chiếm ưu thế tuyệt đối (~16,6K mỗi thể loại), theo sau là Entertainment (~7,8K) và Puzzle (~3,9K).
+- Số lượng game phát hành tăng mạnh và đạt đỉnh quanh **năm 2015–2016** (~3K game/năm), sau đó có xu hướng giảm dần đến 2020 — thị trường bắt đầu bão hòa.
+- Rating trung bình có xu hướng **cải thiện liên tục theo thời gian**, từ ~3,5 (2008) lên hơn 4,0 (2018), phản ánh chất lượng game ngày càng được nâng cao.
+- Đại đa số game (**69,41%**) hướng đến đối tượng **4+ (mọi lứa tuổi)**, cho thấy chiến lược tiếp cận thị trường rộng là xu hướng chủ đạo.
+
+### 💰 Mô hình Doanh thu & Chiến lược Giá
+
+![Mô hình Doanh thu và Chiến lược Giá](images/02-doanh-thu-gia.png)
+
+- Hai mô hình **Miễn phí hoàn toàn (42,15%)** và **Freemium – Free + IAP (41,33%)** gần như chia đôi thị trường, trong khi **Paid (trả phí một lần)** chỉ chiếm 13,08%.
+- **45,2% số game có tích hợp mua hàng trong ứng dụng (IAP)** — cho thấy IAP đã trở thành mô hình kiếm tiền chủ đạo thay vì bán game trả phí truyền thống.
+- Giá trung bình của game trả phí chỉ **$5,01**, khá thấp so với mặt bằng chung ứng dụng di động.
+- Thể loại **Business, Games và Education** có mức giá trung bình cao nhất, trong khi các thể loại giải trí phổ thông (Entertainment, Stickers, Health...) có giá thấp hơn đáng kể.
+- Nhóm **Freemium** tuy có số game tương đương nhóm Miễn phí hoàn toàn nhưng lại tạo ra **lượt review vượt trội** (~20,3M so với ~2,1M), cho thấy hiệu quả giữ chân và thu hút tương tác người dùng tốt hơn.
+
+### 📈 Xu hướng & Vòng đời game
+
+![Xu hướng và Vòng đời game](images/03-xu-huong-vong-doi.png)
+
+- Tuổi đời trung bình của một game trong bộ dữ liệu chỉ **~1,14 năm**, và trung bình đã **913 ngày (~2,5 năm)** kể từ lần cập nhật gần nhất — cho thấy phần lớn game bị "bỏ rơi" sau một thời gian ngắn.
+- Chỉ **26,3% số game còn được duy trì cập nhật**, phần lớn (73,7%) đã ngừng phát triển — vòng đời sản phẩm trong ngành này khá ngắn và mức độ đào thải cao.
+- Phân bố tuổi đời tập trung nhiều nhất ở nhóm **1–5 năm**, giảm dần ở các mốc tuổi đời cao hơn.
+- Top game "sống lâu nhất" chủ yếu là các game giải trí nhẹ, dễ chơi và ít phụ thuộc xu hướng như **Sudoku, Chess, Marple** — cho thấy game casual/puzzle có vòng đời bền vững hơn game theo trend.
+
+### 👨‍💻 Nhà phát triển
+
+![Nhà phát triển](images/04-nha-phat-trien.png)
+
+- Thị trường có khoảng **9.000 nhà phát triển**, nhưng điểm đánh giá trung bình mỗi developer chỉ **1,94** — phản ánh phần lớn nhà phát triển chỉ có 1–2 game và ít được đánh giá.
+- Các developer dẫn đầu về **số lượng game phát hành** (Tapps Tecnologia, Vikash Patel, Netsummit Marketing...) chủ yếu là các studio phát hành số lượng lớn game nhỏ (mass-production), không nhất thiết đi kèm rating cao.
+- **App Advisory** là nhà phát triển dẫn đầu về điểm đánh giá — gợi ý một chiến lược "ít mà chất" mang lại hiệu quả tốt hơn.
+- Biểu đồ phân tán (Số game vs Rating) cho thấy **không có mối tương quan rõ ràng giữa số lượng game và điểm đánh giá trung bình** — chất lượng không tự động đến từ số lượng.
+
+### ⭐ Chất lượng & Mức độ hài lòng
+
+![Chất lượng và Mức độ hài lòng](images/05-chat-luong-hai-long.png)
+
+- Thể loại có trải nghiệm người dùng (rating) cao nhất tập trung ở **Food & Drink, News, Health & Fitness** — cao hơn cả nhóm Games/Education.
+- Nhóm tuổi **9+ và 12+** có điểm rating trung bình cao nhất (4,1), trong khi nhóm **17+** có rating thấp nhất (3,9) — game dành cho người trưởng thành thường bị đánh giá khắt khe hơn.
+- Xu hướng rating và lượt review theo năm cho thấy: rating trung bình tăng ổn định, trong khi tổng lượt review có biến động mạnh hơn theo từng năm — phụ thuộc nhiều vào các "hit game" nổi bật của năm đó.
+- Top game được yêu thích nhất áp đảo bởi các tựa game chiến thuật/mô phỏng nổi tiếng: **Clash of Clans, Clash Royale, PUBG Mobile, Plants vs. Zombies, Pokémon GO** — đều là các game có yếu tố xã hội/multiplayer mạnh.
+
+## 5. Khuyến nghị
+
+**Chiến lược thể loại**
+- Ưu tiên phát triển game thuộc nhóm **Strategy/Games** kết hợp yếu tố **casual/puzzle** để vừa bắt kịp xu hướng thị trường, vừa đảm bảo vòng đời sản phẩm bền vững hơn.
+
+**Mô hình doanh thu**
+- Nên áp dụng mô hình **Freemium (Free + IAP)** thay vì Paid truyền thống, vì mô hình này vừa tối đa hóa lượng người dùng tiếp cận vừa tạo ra mức độ tương tác/review cao hơn đáng kể.
+- Với game trả phí, mức giá tham khảo hợp lý nên quanh ngưỡng **$5** để cạnh tranh tốt trên thị trường.
+
+**Duy trì & cập nhật sản phẩm**
+- Tỷ lệ chỉ 26,3% game còn duy trì cập nhật cho thấy đây là điểm yếu chung của ngành — đầu tư vào **kế hoạch cập nhật dài hạn** là lợi thế cạnh tranh rõ rệt để giữ chân người dùng và duy trì thứ hạng trên App Store.
+
+**Đối tượng người dùng mục tiêu**
+- Ưu tiên phát triển game cho nhóm tuổi **4+ hoặc 9+/12+** — vừa tiếp cận được thị trường rộng nhất, vừa có xu hướng đạt rating cao hơn nhóm 17+.
+
+**Chiến lược nhà phát triển**
+- Thay vì chạy theo số lượng, các studio nhỏ nên tập trung vào **chất lượng từng sản phẩm** (theo hướng của các developer top rating) để xây dựng uy tín thương hiệu bền vững thay vì mô hình sản xuất hàng loạt.
+
+## 6. Công cụ sử dụng
+
+- **Kaggle Dataset** — nguồn dữ liệu thô
+- **Power Query** — làm sạch và biến đổi dữ liệu
+- **Power BI** — xây dựng data model, DAX, thiết kế dashboard 5 trang
+
+---
+
+📬 **Liên hệ:** *Thêm tên, email, LinkedIn của bạn tại đây.*
